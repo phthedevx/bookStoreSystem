@@ -15,7 +15,7 @@ public class Biblioteca {
 
     public Biblioteca(List<Livro> livros, List<Autor> autores) {
         this.livros = new ArrayList<>();
-        this.autores =  new ArrayList<>();
+        this.autores = new ArrayList<>();
 
         Autor autor1 = new Autor(UUID.randomUUID(), "Thomas H. Cormen", LocalDate.of(1956, 1, 1)); // data fictícia
         Autor autor2 = new Autor(UUID.randomUUID(), "Aditya Y. Bhargava", LocalDate.of(1985, 1, 1)); // data fictícia
@@ -32,6 +32,7 @@ public class Biblioteca {
         livros.add(new Livro(UUID.randomUUID(), "Arquitetura Limpa – O Guia do Artesão para Estrutura e Design de Software", autor3, false, LocalDateTime.now(), LocalDateTime.now()));
         livros.add(new Livro(UUID.randomUUID(), "Código Limpo – Habilidades práticas do Agile Software", autor1, true, LocalDateTime.now(), LocalDateTime.now()));
     }
+
     public List<Livro> getLivros() {
         return livros;
     }
@@ -39,4 +40,16 @@ public class Biblioteca {
     public List<Autor> getAutores() {
         return autores;
     }
+
+    public List<Livro> listarLivrosDisponiveis() {
+        List<Livro> disponiveis = new ArrayList<>();
+
+        for (Livro livro : livros) {
+            if (livro.isDisponivel()) {
+                disponiveis.add(livro);
+            }
+        }
+        return disponiveis;
+    }
+
 }
