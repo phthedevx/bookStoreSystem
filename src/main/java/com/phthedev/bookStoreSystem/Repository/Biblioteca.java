@@ -51,5 +51,12 @@ public class Biblioteca {
         }
         return disponiveis;
     }
-
+    public void emprestarLivro(int idLivro){
+        for (Livro livro : livros){
+            if (livro.getId().equals(idLivro)){
+                livro.setDisponivel(false);
+                break;
+            }
+        }
+    }
 }
