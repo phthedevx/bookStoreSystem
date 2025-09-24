@@ -13,7 +13,7 @@ public class Biblioteca {
     private List<Livro> livros;
     private List<Autor> autores;
 
-    public Biblioteca(List<Livro> livros, List<Autor> autores) {
+    public Biblioteca() {
         this.livros = new ArrayList<>();
         this.autores = new ArrayList<>();
 
@@ -41,15 +41,18 @@ public class Biblioteca {
         return autores;
     }
 
-    public List<Livro> listarLivrosDisponiveis() {
-        List<Livro> disponiveis = new ArrayList<>();
-
+    public void listarLivrosDisponiveis() {
+        System.out.println("\nLivros Disponíveis");
+        boolean encontrouAlgum = false;
         for (Livro livro : livros) {
             if (livro.isDisponivel()) {
-                disponiveis.add(livro);
+                System.out.println("ID: " + livro.getId() + " | Título: " + livro.getTitulo() + " | Autor: " + livro.getAutor().getNome());
+                encontrouAlgum = true;
             }
         }
-        return disponiveis;
+        if (!encontrouAlgum) {
+            System.out.println("Nenhum livro disponível no momento.");
+        }
     }
     public void emprestarLivro(UUID idLivro){
         for (Livro livro : livros){
