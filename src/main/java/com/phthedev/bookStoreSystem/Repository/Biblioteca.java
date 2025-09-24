@@ -54,16 +54,18 @@ public class Biblioteca {
             System.out.println("Nenhum livro disponível no momento.");
         }
     }
-    public void emprestarLivro(UUID idLivro){
-        for (Livro livro : livros){
-            if (livro.getId().equals(idLivro)){
-                livro.setDisponivel(false);
-                livro.setDataAtualizacao(LocalDateTime.now());
-                System.out.println("Livro emprestado com sucesso: " + livro.getTitulo());
-            } else{
-                System.out.println("O livro já está emprestado: " + livro.getTitulo());
+    public void emprestarLivro(UUID idLivro) {
+        for (Livro livro : livros) {
+            if (livro.getId().equals(idLivro)) {
+                if (livro.isDisponivel()) {
+                    livro.setDisponivel(false);
+                    livro.setDataAtualizacao(LocalDateTime.now());
+                    System.out.println("Livro emprestado com sucesso: " + livro.getTitulo());
+                } else {
+                    System.out.println("Empréstimo não realizado. O livro '" + livro.getTitulo() + "' já está emprestado.");
+                }
+                return;
             }
-            return;
         }
         System.out.println("Nenhum livro encontrado com o ID informado.");
     }
