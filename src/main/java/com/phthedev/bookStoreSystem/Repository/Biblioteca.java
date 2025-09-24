@@ -51,12 +51,17 @@ public class Biblioteca {
         }
         return disponiveis;
     }
-    public void emprestarLivro(int idLivro){
+    public void emprestarLivro(UUID idLivro){
         for (Livro livro : livros){
             if (livro.getId().equals(idLivro)){
                 livro.setDisponivel(false);
-                break;
+                livro.setDataAtualizacao(LocalDateTime.now());
+                System.out.println("Livro emprestado com sucesso: " + livro.getTitulo());
+            } else{
+                System.out.println("O livro já está emprestado: " + livro.getTitulo());
             }
+            return;
         }
+        System.out.println("Nenhum livro encontrado com o ID informado.");
     }
 }
